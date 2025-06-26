@@ -3,13 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BookSearchComponent } from './book-search/book-search.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReverseWord } from './Shared/Pipes/reverseWord';
 import { SmartTitleCasePipe } from './Shared/Pipes/smartTitleCase';
 import { ArrayManupulationService } from './Shared/Service/arrayMaupuulation.service';
 import { ComponentComminication } from './Shared/Service/ComponentCommunication.service';
 import { Theamservice } from './Shared/Service/ThemeService.service';
+
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [ArrayManupulationService,ComponentComminication,Theamservice],
