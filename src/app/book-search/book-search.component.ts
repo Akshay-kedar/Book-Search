@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { catchError, debounce, debounceTime, of, switchMap, tap } from 'rxjs';
+import { ComponentComminication } from '../Shared/Service/ComponentCommunication.service';
 
 @Component({
   selector: 'app-book-search',
@@ -15,7 +16,7 @@ export class BookSearchComponent implements OnInit {
   books: any[] = [];
   loading: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private messsageService:ComponentComminication ) {}
 
   ngOnInit(): void {
     //      Debounced API request after typing
@@ -27,7 +28,15 @@ export class BookSearchComponent implements OnInit {
     //  Shows “No results” message if empty
 
     //  Shows loading indicator
-    this.searchControl.valueChanges
+
+    this.SearchFunction();
+
+    this.messsageService.sendMessage("hi from book-search component")
+   
+  }
+
+
+  SearchFunction(){ this.searchControl.valueChanges
       .pipe(
         debounceTime(500),
         tap(() => {
@@ -50,5 +59,5 @@ export class BookSearchComponent implements OnInit {
       .subscribe((response) => {
         this.books = response?.docs?.slice(0, 10) || [];
       });
-  }
+    }
 }
