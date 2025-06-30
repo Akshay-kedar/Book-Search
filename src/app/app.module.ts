@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { PaginatorModule } from 'primeng/paginator';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { BookSearchComponent } from './book-search/book-search.component';
@@ -12,6 +14,8 @@ import { ComponentComminication } from './Shared/Service/ComponentCommunication.
 import { Theamservice } from './Shared/Service/ThemeService.service';
 
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { AddBookComponent } from './add-book/add-book.component';
+import { PaginatedListComponent } from './paginated-list/paginated-list.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +23,18 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     ReverseWord,
     SmartTitleCasePipe,
     BookSearchComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    AddBookComponent,
+    PaginatedListComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PaginatorModule,
+    BrowserAnimationsModule
   ],
   providers: [ArrayManupulationService,ComponentComminication,Theamservice],
   bootstrap: [AppComponent]

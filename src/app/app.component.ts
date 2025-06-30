@@ -9,6 +9,9 @@ import { Theamservice } from './Shared/Service/ThemeService.service';
 })
 export class AppComponent implements OnInit {
   title = 'book-search-app';
+
+   itemList = Array.from({ length: 23 }, (_, i) => `Item #${i + 1}`);
+   
 message="";
   constructor(private arrayService: ArrayManupulationService,private messsageService:ComponentComminication,private  themeService: Theamservice ){
 
@@ -22,6 +25,7 @@ message="";
     document.body.className = theme;
   });
 
+  
 
     const array=[
   { name: 'John', grade: 'A' },
