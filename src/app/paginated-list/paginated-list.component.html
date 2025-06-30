@@ -1,0 +1,23 @@
+<div class="list-container">
+<ng-container *ngIf="items && items.length>0; else noItemTemplate"
+>
+<ul class="item-list">
+        <li *ngFor="let item of paginatedItems">
+            {{item}}
+        </li>
+</ul>
+
+ <p-paginator
+      [rows]="pageSize"
+      [totalRecords]="items.length"
+      (onPageChange)="onPageChange($event)">
+    </p-paginator>
+</ng-container>
+
+
+    <ng-template #noItemTemplate></ng-template>
+    
+
+
+
+</div>
