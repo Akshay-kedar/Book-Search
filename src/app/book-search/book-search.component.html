@@ -1,10 +1,8 @@
-<p>book-search works!</p>
-<input  [formControl]="searchControl"  placeholder="Search Book Name">
-<div *ngIf="loading">Loading...</div>
-<ul *ngIf="books.length>0">
-    <li *ngFor="let book of books">
-        {{book.title}}
-    </li>
 
-</ul>
-<p *ngIf="!loading && books.length===0">No books found</p>
+<div class="form-container">
+    <input  pInputText [formControl]="searchControl" name="searchBook" placeholder="Search Book Name">
+    <p-button label="Search"></p-button>
+    <p-progressSpinner *ngIf="loading"></p-progressSpinner>
+    <p-listbox *ngIf="books.length > 0" [options]="books" optionLabel="title"></p-listbox>
+    <p *ngIf="!loading && books.length === 0">No books found</p>
+</div>

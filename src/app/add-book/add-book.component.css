@@ -1,0 +1,35 @@
+.p-fluid {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.p-field {
+    margin-bottom: 16px;
+}
+
+.p-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.p-field input,
+.p-field .p-dropdown,
+.p-field .p-calendar {
+    width: 100%;
+}
+
+.p-field-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button {
+    width: 100%;
+}

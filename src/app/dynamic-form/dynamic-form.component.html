@@ -1,50 +1,40 @@
-<form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="skillForm" (ngSubmit)="onSubmit()" class="p-fluid">
     <div formArrayName="skills">
         <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i" class="skill-entry">
-            <!-- skill Name -->
-            <label>Skill Name:</label>
-            <input type="text" formControlName="skillName" />
-            <div *ngIf="getControl(i, 'skillName')?.invalid && (getControl(i, 'skillName')?.touched || submitted)">
-                <small *ngIf="getControl(i, 'skillName')?.errors?.['required']">Skill name is required.</small>
-                <small *ngIf="getControl(i, 'skillName')?.errors?.['minlength']">Minimum 2 characters.</small>
+            <!-- Skill Name -->
+            <div class="p-field">
+                <label for="skillName{{i}}">Skill Name:</label>
+                <input id="skillName{{i}}" type="text" pInputText formControlName="skillName" />
+                <small *ngIf="getControl(i, 'skillName')?.invalid && (getControl(i, 'skillName')?.touched || submitted)" class="p-error">
+                    <span *ngIf="getControl(i, 'skillName')?.errors?.['required']">Skill name is required.</span>
+                    <span *ngIf="getControl(i, 'skillName')?.errors?.['minlength']">Minimum 2 characters.</span>
+                </small>
             </div>
 
-            <!-- Expirience -->
-            <label>Experience (Years):</label>
-            <input type="number" formControlName="expirience">
-
-            <!-- error on Expirience -->
-            <div *ngIf="getControl(i,'expirience')?.invalid &&(getControl(i,'expirience')?.touched||submitted)">
-
-                <small *ngIf="getControl(i, 'experience')?.errors?.['required']">Experience is required.</small>
-                <small *ngIf="getControl(i, 'experience')?.errors?.['min']">Min value is 0.</small>
-                <small *ngIf="getControl(i, 'experience')?.errors?.['max']">Max value is 50.</small>
-
+            <!-- Experience -->
+            <div class="p-field">
+                <label for="experience{{i}}">Experience (Years):</label>
+                <input id="experience{{i}}" type="number" pInputText formControlName="expirience" />
+                <small *ngIf="getControl(i, 'expirience')?.invalid && (getControl(i, 'expirience')?.touched || submitted)" class="p-error">
+                    <span *ngIf="getControl(i, 'expirience')?.errors?.['required']">Experience is required.</span>
+                    <span *ngIf="getControl(i, 'expirience')?.errors?.['min']">Min value is 0.</span>
+                    <span *ngIf="getControl(i, 'expirience')?.errors?.['max']">Max value is 50.</span>
+                </small>
             </div>
 
-            <label>Proficiency:</label>
-
-            <select formControlName="proficiencyLevel">
-                <option value="">Select</option>
-                <option value="Beginner">Begineer</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Expert">Expert</option>
-
-            </select>
-
-            <div
-                *ngIf="getControl(i, 'proficiencyLevel')?.invalid && (getControl(i, 'proficiencyLevel')?.touched || submitted)">
-                <small>Proficiency level is required.</small>
+            <!-- Proficiency -->
+            <div class="p-field">
+                <label for="proficiency{{i}}">Proficiency:</label>
+                <p-dropdown id="proficiency{{i}}" [options]="proficiencyOptions" formControlName="proficiencyLevel" placeholder="Select"></p-dropdown>
+                <small *ngIf="getControl(i, 'proficiencyLevel')?.invalid && (getControl(i, 'proficiencyLevel')?.touched || submitted)" class="p-error">
+                    Proficiency level is required.
+                </small>
             </div>
 
-            <button type="button" (click)="removeSkill(i)" *ngIf="skills.length > 1">Remove</button>
-
+            <button pButton type="button" label="Remove" icon="pi pi-minus" class="p-button-danger" (click)="removeSkill(i)" *ngIf="skills.length > 1"></button>
             <hr />
         </div>
-
     </div>
-    <button type="button" (click)="addSkill()">+ Add Skill</button>
-    <button type="submit">Submit</button>
-
-
+    <button pButton type="button" label="+ Add Skill" icon="pi pi-plus" class="p-button-success" (click)="addSkill()"></button>
+    <button pButton type="submit" label="Submit" icon="pi pi-check"></button>
 </form>
