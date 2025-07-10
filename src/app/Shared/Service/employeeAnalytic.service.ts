@@ -1,70 +1,106 @@
-import { Injectable } from "@angular/core";
-import { Employee } from "./data";
+import { Injectable } from '@angular/core';
+import { Employee } from './data';
 
 @Injectable({
-    providedIn:"root"
+  providedIn: 'root',
 })
 export class EmployeeAnylatics {
-    
-// Challenge: Employee Analytics Dashboard
-// Scenario:
-// You are given an array of Employee objects in a company. Each employee belongs to a department,
-//  has multiple performance scores, and might be working on multiple projects.
-//   You are tasked with extracting and transforming data to display on a dashboard.
+  // Challenge: Employee Analytics Dashboard
+  // Scenario:
+  // You are given an array of Employee objects in a company. Each employee belongs to a department,
+  //  has multiple performance scores, and might be working on multiple projects.
+  //   You are tasked with extracting and transforming data to display on a dashboard.
 
+  // Q1]Top Performers List:
+  //Return the names of the top 2 performers (based on the average of performanceScores), only if they are isActive.
+  top2Perfomer(data: Employee[], topN: number) {
+    let topTwoperformer = [];
 
+    return data
+      .filter((emp) => emp.isActive)
+      .map((emp) => ({
+        name: emp.name,
+        aggrigate:
+          emp.performanceScores.reduce((accum, cur) => {
+            return (accum = accum + cur);
+          }, 0) / emp.performanceScores.length,
+      }))
+      .sort((a, b) => {
+        return b.aggrigate - a.aggrigate;
+      })
+      .slice(0, topN)
+      .map((emp) => emp.name);
+  }
 
-// Q1]Top Performers List:
-//Return the names of the top 2 performers (based on the average of performanceScores), only if they are isActive.
-top2Perfomer(data:Employee[],topN:number){
-  let topTwoperformer=[];
+  // Department Stats Map:
+  // Create a mapping of departments to the number of active employees in each.
 
- return data.filter(emp=> emp.isActive).map(emp=>({
-    name:emp.name,
-    aggrigate:emp.performanceScores.reduce((accum,cur)=>{
-        return accum=accum+cur
-    },0)/emp.performanceScores.length
- }))
- .sort((a,b)=>{return b.aggrigate-a.aggrigate})
- .slice(0, topN)
- .map(emp => emp.name);
-   
+  departmetStat(data: Employee[]) {
+    const depStat = {};
 
-
-}
-
-// Department Stats Map:
-// Create a mapping of departments to the number of active employees in each.
-
-departmetStat( data:Employee[]){
-  
-
-    const depStat={};
-
-    data.filter(emp=>emp.isActive==true).map((emp)=>{
-        if(!depStat[emp.department]){
-
-            depStat[emp.department]=[]
+    data
+      .filter((emp) => emp.isActive == true)
+      .map((emp) => {
+        if (!depStat[emp.department]) {
+          depStat[emp.department] = [];
         }
-        
-           depStat[emp.department].push(emp)
-        
-    })
-    console.log('depStat',depStat);
-}
 
+        depStat[emp.department].push(emp);
+      });
+    console.log('depStat', depStat);
+  }
 
-// Project Hours Aggregation:
-// Return a dictionary where the key is projectId and the value is the total hours logged across all employees.
+  // Project Hours Aggregation:
+  // Return a dictionary where the key is projectId and the value is the total hours logged across all employees.
 
-// Sorted Project Contributors:
-// Return a list of all employee names who contributed to project Alpha, sorted by total hours logged (descending).
+  projectHourAggrigatio(data: Employee[]) {
+    //logic 1
 
-// Performance Warning List:
-// Find all active employees whose average performance score is below 85, and return an array of objects:
+    // let projectHourAggrigation:Record<string,number>={};
 
+    // for(let emp of data ){
 
+    //     for(let project of emp.projects ){
 
+    //         if(!projectHourAggrigation[project.id])
+    //         {
+    //             projectHourAggrigation[project.id]=0;
+    //         }
+    //         projectHourAggrigation[project.id]+=project.hoursLogged;
 
+    //     }
+    // }
 
+    //logic2
+    let projectHourAggrigation = data
+      .flatMap((data) => {
+        console.log('falten data', data);
+        return data.projects;
+      })
+      .reduce<Record<string, number>>((acc, proj) => {
+        acc[proj.id] = (acc[proj.id] || 0) + proj.hoursLogged;
+        return acc;
+      }, {});
+
+    console.log('projectHourAggrigation', projectHourAggrigation);
+  }
+
+  // Sorted Project Contributors:
+  // Return a list of all employee names who contributed to project Alpha, sorted by total hours logged (descending).
+
+  sortedProjectContributor(data: Employee[]) {
+    let sortedProjectcontributorName = data.flatMap((emp) => {
+      return emp.projects.map((proj) => ({
+        employeeName: emp.name,
+        projectId: proj.id,
+        projectName: proj.name,
+        hours: proj.hoursLogged,
+      }));
+    }).filter(emp=>emp.projectName=="Alpha").sort((a,b)=>b.hours-a.hours)
+
+    console.log('sortedProjectcontributorName', sortedProjectcontributorName);
+  }
+
+  // Performance Warning List:
+  // Find all active employees whose average performance score is below 85, and return an array of objects:
 }

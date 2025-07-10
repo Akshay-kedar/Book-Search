@@ -29,6 +29,7 @@ message="";
     document.body.className = theme;
   });
 
+
   
 
     const array=[
@@ -41,6 +42,8 @@ message="";
   this.employeeAnylaticService.departmetStat(employees)
   
     this.arrayService.GroupBy(array);
+    this.employeeAnylaticService.projectHourAggrigatio(employees);
+    this.employeeAnylaticService.sortedProjectContributor(employees)
   }
 
 
