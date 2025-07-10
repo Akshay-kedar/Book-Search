@@ -8,7 +8,15 @@ import { FormControl,FormGroup,FormArray,Validators, FormBuilder } from '@angula
 export class DynamicFormComponent implements OnInit{
   skillForm!:FormGroup;
   submitted = false;
-  
+  proficiencyOptions = [
+    { label: 'Beginner', value: 'Beginner' },
+    { label: 'Intermediate', value: 'Intermediate' },
+    { label: 'Expert', value: 'Expert' }
+  ].map(option => ({
+    label: String(option.label),
+    value: String(option.value)
+  }));
+
   constructor(private fb:FormBuilder){}
 
   ngOnInit(): void {
@@ -25,7 +33,7 @@ export class DynamicFormComponent implements OnInit{
     return this.fb.group({
       skillName:['',[Validators.required,Validators.minLength(2)]],
       expirience:[null,[Validators.required,Validators.min(0),Validators.max(50)]],
-      proficiencyLevel:['',Validators.required]
+      proficiencyLevel:[null,Validators.required]
     });
 
   }
@@ -48,12 +56,10 @@ export class DynamicFormComponent implements OnInit{
       this.skillForm.markAllAsTouched();
       return;
     }
-    console.log("saved skills",this.skillForm.value);
     alert("skills are saved sucessfully")
   }
 
   getControl(index:number,controlName:string){
-    console.log(this.skills.at(index).get(controlName));
     return this.skills.at(index).get(controlName)
   }
 }

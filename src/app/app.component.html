@@ -1,12 +1,33 @@
-<h1>{{title}}</h1>
-<!-- 
-<p>{{"angular is awsome"|reverseWords}}</p>
-<p>{{"the lord of the rings"|smartTitleCase}}</p>
-<h3>{{message}}</h3> -->
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <button pButton type="button" label="Home" class="p-button-text"></button>
+    <button pButton type="button" label="About" class="p-button-text"></button>
+    <button pButton type="button" label="Contact" class="p-button-text"></button>
+  </div>
+</p-toolbar>
 
-<app-add-book></app-add-book>
+<main>
+  <h1>{{title}}</h1>
+  <!-- 
+  <p>{{"angular is awsome"|reverseWords}}</p>
+  <p>{{"the lord of the rings"|smartTitleCase}}</p>
+  <h3>{{message}}</h3> -->
 
-<app-paginated-list [items]="itemList" [pageSize]="5"></app-paginated-list>
-<!-- <app-book-search></app-book-search>
+  <app-book-search></app-book-search>
+  <app-add-book></app-add-book>
 
-<app-dynamic-form></app-dynamic-form> -->
+  <app-soratble-table-feature [data]="userData" [columns]="columns"></app-soratble-table-feature>
+
+
+  <app-paginated-list [items]="itemList" [pageSize]="5"></app-paginated-list>
+
+  <app-dynamic-form></app-dynamic-form>
+
+
+</main>
+
+<p-footer>
+  <div class="footer-content">
+    <p>&copy; 2025 My Application. All rights reserved.</p>
+  </div>
+</p-footer>

@@ -13,6 +13,7 @@ export class PaginatedListComponent {
   @Input()
   pageSize:number=5;
 
+
   currentPage: number = 0;
 
    get paginatedItems(): string[] {

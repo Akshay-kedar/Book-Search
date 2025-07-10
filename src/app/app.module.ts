@@ -2,9 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { PaginatorModule } from 'primeng/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { ListboxModule } from 'primeng/listbox';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ToolbarModule } from 'primeng/toolbar';
 
 import { AppComponent } from './app.component';
-import { BookSearchComponent } from './book-search/book-search.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BookSearchComponent } from './components/book-search/book-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReverseWord } from './Shared/Pipes/reverseWord';
@@ -13,9 +22,11 @@ import { ArrayManupulationService } from './Shared/Service/arrayMaupuulation.ser
 import { ComponentComminication } from './Shared/Service/ComponentCommunication.service';
 import { Theamservice } from './Shared/Service/ThemeService.service';
 
-import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { AddBookComponent } from './add-book/add-book.component';
-import { PaginatedListComponent } from './paginated-list/paginated-list.component';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { AddBookComponent } from './components/add-book/add-book.component';
+import { PaginatedListComponent } from './components/paginated-list/paginated-list.component';
+import { EmployeeAnylatics } from './Shared/Service/employeeAnalytic.service';
+import { SoratbleTableFeatureComponent } from './components/soratble-table-feature/soratble-table-feature.component';
 
 @NgModule({
   declarations: [
@@ -25,18 +36,27 @@ import { PaginatedListComponent } from './paginated-list/paginated-list.componen
     BookSearchComponent,
     DynamicFormComponent,
     AddBookComponent,
-    PaginatedListComponent
+    PaginatedListComponent,
+    SoratbleTableFeatureComponent
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-BrowserAnimationsModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     PaginatorModule,
-    BrowserAnimationsModule
+    InputTextModule,
+    ButtonModule,
+    ListboxModule,
+    ProgressSpinnerModule,
+    DropdownModule,
+    CalendarModule,
+    CheckboxModule,
+    ToolbarModule
   ],
-  providers: [ArrayManupulationService,ComponentComminication,Theamservice],
+  providers: [ArrayManupulationService,ComponentComminication,Theamservice,EmployeeAnylatics],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

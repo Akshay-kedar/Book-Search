@@ -1,0 +1,8 @@
+
+<div class="form-container">
+    <input  pInputText [formControl]="searchControl" name="searchBook" placeholder="Search Book Name">
+    <p-button label="Search"></p-button>
+    <p-progressSpinner *ngIf="loading"></p-progressSpinner>
+    <p-listbox *ngIf="books.length > 0" [options]="books" optionLabel="title"></p-listbox>
+    <p *ngIf="!loading && books.length === 0">No books found</p>
+</div>
