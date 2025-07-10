@@ -15,6 +15,14 @@ export class AppComponent implements OnInit {
    itemList = Array.from({ length: 23 }, (_, i) => `Item #${i + 1}`);
    
 message="";
+
+ userData = [
+  { name: 'Alice', age: 30, email: 'alice@example.com' },
+  { name: 'Bob', age: 25, email: 'bob@example.com' },
+  { name: 'Charlie', age: 35, email: 'charlie@example.com' }
+];
+
+columns=['name','age','email']
   constructor(private arrayService: ArrayManupulationService,private messsageService:ComponentComminication,private  themeService: Theamservice,
     private employeeAnylaticService:EmployeeAnylatics
    ){
@@ -29,8 +37,6 @@ message="";
     document.body.className = theme;
   });
 
-
-  
 
     const array=[
   { name: 'John', grade: 'A' },

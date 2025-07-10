@@ -13,7 +13,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 
 import { AppComponent } from './app.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BookSearchComponent } from './book-search/book-search.component';
+import { BookSearchComponent } from './components/book-search/book-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReverseWord } from './Shared/Pipes/reverseWord';
@@ -22,10 +22,11 @@ import { ArrayManupulationService } from './Shared/Service/arrayMaupuulation.ser
 import { ComponentComminication } from './Shared/Service/ComponentCommunication.service';
 import { Theamservice } from './Shared/Service/ThemeService.service';
 
-import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { AddBookComponent } from './add-book/add-book.component';
-import { PaginatedListComponent } from './paginated-list/paginated-list.component';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { AddBookComponent } from './components/add-book/add-book.component';
+import { PaginatedListComponent } from './components/paginated-list/paginated-list.component';
 import { EmployeeAnylatics } from './Shared/Service/employeeAnalytic.service';
+import { SoratbleTableFeatureComponent } from './components/soratble-table-feature/soratble-table-feature.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EmployeeAnylatics } from './Shared/Service/employeeAnalytic.service';
     BookSearchComponent,
     DynamicFormComponent,
     AddBookComponent,
-    PaginatedListComponent
+    PaginatedListComponent,
+    SoratbleTableFeatureComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [

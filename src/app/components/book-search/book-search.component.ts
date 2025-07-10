@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { catchError, debounce, debounceTime, of, switchMap, tap } from 'rxjs';
-import { ComponentComminication } from '../Shared/Service/ComponentCommunication.service';
+import { ComponentComminication } from '../../Shared/Service/ComponentCommunication.service';
 
 @Component({
   selector: 'app-book-search',
